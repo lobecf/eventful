@@ -7,7 +7,7 @@
 - Telling Heroku how to run our application
 - Setting up post release scripts that ensure our application will be able to respond to requests in production
 
-![Deployment Flow](./diagrams/deployment-flow.png)
+![Deployment Flow](./deployment-flow.png)
 
 Curriculum Resources:
 
