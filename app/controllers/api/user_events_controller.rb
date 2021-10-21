@@ -1,4 +1,4 @@
-class UserEventsController < ApplicationController
+class Api::UserEventsController < ApplicationController
   def create
     user_event = current_user.user_events.build(user_event_params)
     if user_event.save

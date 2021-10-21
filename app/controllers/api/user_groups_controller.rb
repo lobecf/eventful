@@ -1,4 +1,4 @@
-class UserGroupsController < ApplicationController
+class Api::UserGroupsController < ApplicationController
   def create
     user_group = current_user.user_groups.build(user_group_params)
     if user_group.save

@@ -74,6 +74,12 @@ or
 postgres --version
 ```
 
+or for WSL
+
+```
+psql --version 
+```
+
 Sometimes I've seen students have [issues with Postgres on WSL](https://dakotaleemartinez.com/tutorials/postgresql-setup-on-ubuntu/) due to an older version that's installed but not active. In the lessons, the idea is presented that we should work with Postgres locally as well if we plan to use it in production. This is definitely a best practice, as it can help use prevent strange bugs from occurring down the line. But, if you are currently having issues with Postgres locally, you can most likely still deploy your application to production while using sqlite as the database to support your application in development. At scale, this is not practical as larger codebases are more likely taking advantage of features that postgres has that sqlite doesn't support, but at this point, you probably won't have any issues using Sqlite locally and Postgres in production. 
 
 I'll go through how to configure your app for postgres locally and then also how to configure it to continue using the sqlite database we've used in development so you can see how to do that if you've been unable to resolve local issues with Postgres at this time.
