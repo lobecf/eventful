@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Build and Deployment Configuration for Meetup Clone's React client",
   "engines": {
-    "node": ">= 14"
+    "node": "15.10.0"
   },
   "scripts": {
     "clean": "rm -rf public",
