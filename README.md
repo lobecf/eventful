@@ -16,10 +16,10 @@ Curriculum Resources:
 
 ## Logistics 
 
-If you want to follow along today, you can clone down [this linked repository](https://github.com/DakotaLMartinez/meetup_clone_deploy). The starter code will be on a branch called `starter` and I'll be writing my code in a branch called `main` because Heroku only allows deployments from a branch called `main` or `master`. If you want to deploy this on your own, you should clone down the repo, checkout the `starter` branch and then checkout a new branch called `master`. That way your work won't conflict with mine and if your code diverges you'll still be able to fetch and pull without unnecessary merge conflicts. At the end of today, the `main` branch will be the one with the code in it that I've deployed to Heroku.
+If you want to follow along today, you can clone down [this linked repository](https://github.com/DakotaLMartinez/080921_meetup_clone_deploy). The starter code will be on a branch called `starter` and I'll be writing my code in a branch called `main` because Heroku only allows deployments from a branch called `main` or `master`. If you want to practice deploying this on your own, you should clone down the repo, checkout the `starter` branch and then checkout a new branch called `master`. That way your work won't conflict with mine and if your code diverges you'll still be able to fetch and pull without unnecessary merge conflicts. At the end of today, the `main` branch will be the one with the code in it that I've deployed to Heroku.
 
 ```
-git clone https://github.com/DakotaLMartinez/meetup_clone_deploy
+git clone git@github.com:DakotaLMartinez/080921_meetup_clone_deploy.git
 ```
 
 ```
@@ -58,6 +58,7 @@ gem install rails
 
 If you don't have one of these versions installed at the moment, open up a terminal and start it now, it sometimes can take 10-15 minutes, but you'll be able to do some other stuff in the meantime.
 
+>NOTE: You will technically be able to deploy your application with a version of Ruby not included above, but Heroku won't offer you any support as it's not recommended due to security concerns.
 
 ## Switching to Postgres
 
@@ -308,19 +309,15 @@ rails db:create db:migrate db:seed
 When we do this the first time, we'll have issues because our seed users don't have passwords (and thus fail the validation added by `has_secure_password`).
 
 ```rb
-dakota = User.create(username: "Dakota", email: "dakota@flatironschool.com")
-sam = User.create(username: "Sam", email: "sam.boahen@flatironschool.com")
-marc = User.create(username: "Marc", email: "marc.majcher@flatironschool.com")
-shivang = User.create(username: "Shivang", email: "shivang.dave@flatironschool.com")
+user = User.create(username: 'Dakota', email: 'dakota@dakota.com', bio: 'i love ruby')
+user2 = User.create(username: 'DJ', email: 'dj@dj.com', bio: 'i love js')
 ```
 
 let's add super insecure demo passwords for now:
 
 ```rb
-dakota = User.create(username: "Dakota", email: "dakota@flatironschool.com", password: "password")
-sam = User.create(username: "Sam", email: "sam.boahen@flatironschool.com", password: "password")
-marc = User.create(username: "Marc", email: "marc.majcher@flatironschool.com", password: "password")
-shivang = User.create(username: "Shivang", email: "shivang.dave@flatironschool.com", password: "password")
+user = User.create(username: 'Dakota', email: 'dakota@dakota.com', bio: 'i love ruby', password: 'password')
+user2 = User.create(username: 'DJ', email: 'dj@dj.com', bio: 'i love js', password: 'password')
 ```
 
 And then, try running the command again:
@@ -351,6 +348,17 @@ We also need to create the fallback controller and its index action.
 rails g controller fallback
 ```
 
+This will give us the controller
+```rb
+class FallbackController < ApplicationController
+  
+end
+```
+
+we'll need to make 2 changes:
+- Add the index action that renders the index.html file.
+- Change the inheritance relationship for the controller to `ActionController::Base` instead of `ApplicationController` so that rails will be able to render an html response.
+
 ```rb
 class FallbackController < ActionController::Base
   def index
@@ -358,6 +366,8 @@ class FallbackController < ActionController::Base
   end
 end
 ```
+
+
 
 To configure our client side application for building and deployment, we'll need to create a `package.json` file at the root of the project.
 
@@ -398,21 +408,15 @@ rails s
 
 If we visit our react app in the browser and navigate around and then refresh the page and everything works then we're on the right track.
 
-Let's try it out, log in to the application and refresh the page. Whoops!  Looks like we're seeing api data here. Why?
+Let's try it out, log in to the application and refresh the page. Whoops!  
 
--------
--------
--------
--------
--------
--------
--------
--------
--------
--------
--------
--------
+<details>
+  <summary>
+    Looks like we're seeing api data here. Why?
+  </summary>
+  <hr/>
 
+  
 Okay, so our client side route matches a server side route exactly. That's a problem! We need to create a namespace for our api routes so that they all start with /api and we can distinguish between them and the client side routes.
 
 ```rb
@@ -434,21 +438,18 @@ Rails.application.routes.draw do
 end
 ```
 
-What else do we need to do here to make sure things still work right?
+  <hr/>
 
--------
--------
--------
--------
--------
--------
--------
--------
--------
--------
--------
--------
+</details>
+<br/>
 
+
+
+<details>
+  <summary>
+    What else do we need to do here to make sure things still work right?
+  </summary>
+  <hr/>
 
 Look for all occurrences within client or public of:
 fetch(\`
@@ -467,6 +468,15 @@ fetch("/api)
 
 If we do this using the global find and replace, it should get all of the fetches (including the ones in the built code from our heroku script so we don't need to build again!)
 
+  <hr/>
+
+</details>
+<br/>
+
+
+
+
+
 Now, when we try it, it's not working to login and we get this in our rails server logs:
 
 ```
@@ -475,7 +485,13 @@ Started POST "/api/login" for ::1 at 2021-10-04 16:55:38 -0700
 ActionController::RoutingError (uninitialized constant Api):
 ```
 
-The issue is that when we add a namespace to our routes, Rails is expecting a subdirectory within the controllers directory and a constant preceding all of our controller names. To fix this, we can run some terminal commands to move the files around (or do this manually through the VS Code interface):
+<details>
+  <summary>
+    What's the issue and how do we fix it?
+  </summary>
+  <hr/>
+
+  The issue is that when we add a namespace to our routes, Rails is expecting a subdirectory within the controllers directory and a constant preceding all of our controller names. To fix this, we can run some terminal commands to move the files around (or do this manually through the VS Code interface):
 
 ```bash
 mkdir app/controllers/api
@@ -496,6 +512,13 @@ rails g controller api/groups
 ```
 
 > This will give you a class called `Api::GroupsController` in a file at `app/controllers/api/groups_controller.rb`
+
+  <hr/>
+
+</details>
+<br/>
+
+
 
 Now, we can go back to the browser and submit the login form again. This time it works!
 
@@ -787,3 +810,16 @@ or
 ```
 git push heroku master
 ```
+
+### Note on Generators
+
+When you build out your application, you can save yourself the trouble of having to move all of your routes around by using the `model` and `controller` generators separately rather than using `resource`:
+
+```
+rails g model Group
+```
+
+```
+rails g controller api/groups
+```
+This will create the api namespace in your routes file, the `api` directory inside of `app/controllers` and add `Api::` in front of the `GroupsController` class defined within `app/controllers/api/groups_controller.rb`.
