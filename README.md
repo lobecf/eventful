@@ -180,7 +180,7 @@ Before we move on, one more thing we need to think about. When we get the curren
 
 ```rb
 class UserSerializer < ActiveModel::Serializer
-  attributes :id, :username, :email, :profile_picture_thumbnail_url, :profile_picture_url
+  attributes :id, :username, :email, :profile_picture_thumbnail_url, :profile_picture_url, :cloudinary_public_id
 end
 ```
 

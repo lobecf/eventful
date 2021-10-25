@@ -6,10 +6,17 @@ function CloudinaryUpload({
   buttonText
 }) {
 
+  // this function will generate an id to be used in
+  // targeting the element to which we'll add a click event
+  // listener to trigger the appearance of the upload widget.
+  // We're generating the id based on the button text
+  // so that we'll be able to have multiple buttons with
+  // different upload presents visible on the same page.
   const generateId = () => {
     const ending = buttonText.split(' ').map(w => w.toLowerCase()).join('_')
     return `upload_widget_${ending}`
   }
+
   useEffect(() => {
     window.myWidget = window.cloudinary.createUploadWidget(
       {
