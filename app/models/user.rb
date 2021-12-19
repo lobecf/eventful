@@ -1,17 +1,22 @@
 class User < ApplicationRecord
-  has_many :user_groups
-  has_many :groups, through: :user_groups
-  has_many :user_events
-  has_many :events, through: :user_events
-  has_many :created_events, class_name: 'Event'
+    has_many :events
+    has_many :created_events, class_name: "Event"
+    has_many :sent_invitations, class_name: "Invitation", foreign_key: "sender_id"
+    has_many :received_invitations, class_name: "Invitation", foreign_key: "receiver_id"
 
-  validates :username, uniqueness: true
-  validates :email, uniqueness: true, allow_blank: true
-  
-  has_secure_password
+    has_many :notifications, as: :recipient
+    has_secure_password
+
+    def invitations
+        Invitation.where("sender_id = ? OR receiver_id = ?", id, id)
+    end
+
+    def received_invitations
+        Invitation.where("receiver_id = ?", id)
+    end
+
+    def sent_invitations
+        Invitation.where("sender_id = ?", id)
+    end
+    
 end
-
-
-
-# has_many :attending_events, through: :user_events, source: :event
-# has_many :events

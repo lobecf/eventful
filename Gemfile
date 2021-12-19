@@ -33,3 +33,10 @@ gem "active_model_serializers", "~> 0.10.12"
 gem "bcrypt", "~> 3.1"
 
 gem "pg", "~> 1.2"
+
+gem "cloudinary", "~> 1.21"
+gem "dotenv-rails", "~> 2.7"
+
+gem 'fast_jsonapi'
+
+gem "noticed", "~> 1.5"

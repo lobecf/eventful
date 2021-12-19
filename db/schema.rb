@@ -10,65 +10,67 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_20_180625) do
+ActiveRecord::Schema.define(version: 2021_12_14_222114) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "events", force: :cascade do |t|
     t.string "title"
-    t.text "description"
+    t.string "description"
     t.string "location"
     t.datetime "start_time"
     t.datetime "end_time"
-    t.bigint "group_id", null: false
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["group_id"], name: "index_events_on_group_id"
+    t.string "event_type"
+    t.string "event_picture_url"
+    t.string "event_picture_thumbnail_url"
+    t.string "cloudinary_public_id"
     t.index ["user_id"], name: "index_events_on_user_id"
   end
 
-  create_table "groups", force: :cascade do |t|
-    t.string "name"
-    t.string "location"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "user_events", force: :cascade do |t|
-    t.bigint "user_id", null: false
+  create_table "invitations", force: :cascade do |t|
     t.bigint "event_id", null: false
+    t.bigint "sender_id"
+    t.bigint "receiver_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.boolean "attended"
-    t.index ["event_id"], name: "index_user_events_on_event_id"
-    t.index ["user_id"], name: "index_user_events_on_user_id"
+    t.boolean "rsvp"
+    t.index ["event_id"], name: "index_invitations_on_event_id"
+    t.index ["receiver_id"], name: "index_invitations_on_receiver_id"
+    t.index ["sender_id"], name: "index_invitations_on_sender_id"
   end
 
-  create_table "user_groups", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.bigint "group_id", null: false
+  create_table "notifications", force: :cascade do |t|
+    t.string "recipient_type", null: false
+    t.bigint "recipient_id", null: false
+    t.string "type", null: false
+    t.jsonb "params"
+    t.datetime "read_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["group_id"], name: "index_user_groups_on_group_id"
-    t.index ["user_id"], name: "index_user_groups_on_user_id"
+    t.index ["read_at"], name: "index_notifications_on_read_at"
+    t.index ["recipient_type", "recipient_id"], name: "index_notifications_on_recipient"
   end
 
   create_table "users", force: :cascade do |t|
+    t.string "name"
     t.string "username"
-    t.string "email"
-    t.text "bio"
+    t.string "password_digest"
+    t.string "address"
+    t.string "image_url"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "password_digest"
-    t.boolean "admin", default: false
+    t.boolean "admin"
+    t.string "profile_picture_url"
+    t.string "profile_picture_thumbnail_url"
+    t.string "cloudinary_public_id"
   end
 
-  add_foreign_key "events", "groups"
   add_foreign_key "events", "users"
-  add_foreign_key "user_events", "events"
-  add_foreign_key "user_events", "users"
-  add_foreign_key "user_groups", "groups"
-  add_foreign_key "user_groups", "users"
+  add_foreign_key "invitations", "events"
+  add_foreign_key "invitations", "users", column: "receiver_id"
+  add_foreign_key "invitations", "users", column: "sender_id"
 end

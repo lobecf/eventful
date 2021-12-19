@@ -11,5 +11,8 @@
     "deploy": "cp -a client/build/. public/",
     "heroku-postbuild": "npm run clean && npm run build && npm run deploy"
   },
-  "author": "DakotaLMartinez"
+  "author": "CharlesLobe",
+  "dependencies": {
+    "markdown-react-js": "^1.0.2"
+  }
 }
