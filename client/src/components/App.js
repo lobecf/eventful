@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Switch, Route } from "react-router-dom";
 import styled from "styled-components";
-import NavBar from "./NavBar";
+import NavBar from "../pages/Navbar";
 import Header from "./Header";
 import InvitationDesigns from "./InvitationDesigns";
 import EventsContainer from "../pages/EventsContainer";
