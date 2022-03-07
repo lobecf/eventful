@@ -20,9 +20,8 @@ function UpdateEvent({eventId, updateEvent, sentInvitations, allUsers}) {
   useEffect(() => {
     getEvent();
   }, [])
-  
   function getEvent() {
-    fetch(`http://127.0.0.1:3000/api/events/${eventId}`).then((result) => {
+    fetch(`/api/events/${eventId}`).then((result) => {
       result.json().then((event) => {
         setEvent(event)
         setTitle(event.title)
@@ -52,7 +51,7 @@ function UpdateEvent({eventId, updateEvent, sentInvitations, allUsers}) {
   function handleUpdate() {
     let event={title, description, location, start_time: startTime, end_time: endTime, receivers, event_picture_url: eventImage}
     console.warn("event", event)
-    fetch(`http://127.0.0.1:3000/api/events/${eventId}`, {
+    fetch(`/api/events/${eventId}`, {
       method: 'PATCH',
       headers: {
         'Accept':'application/json',

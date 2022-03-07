@@ -9,7 +9,7 @@ function EventDetail({ user, eventId, handleAcceptInvitation, handleRejectInvita
 
   const fetchEventCallback = useCallback(
     () => {
-      fetch(`http://127.0.0.1:3000/api/events/${eventId}`, {
+      fetch(`/api/events/${eventId}`, {
         credentials: 'include'
       })
         .then(res => res.json())
@@ -123,6 +123,12 @@ const Div = styled.div`
 
 const Img = styled.img`
     margin: auto;
+`;
+
+const Map = styled.img`
+  width: 350px;
+  margin: auto;
+  padding-bottom: 40px;
 `;
 
 const Button2 = styled.button`

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Switch, Route } from "react-router-dom";
 import styled from "styled-components";
-import NavBar from "./NavBar";
+import NavBar from "../pages/NavBar";
 import Header from "./Header";
 import EventsContainer from "../pages/EventsContainer";
 import Login from "../pages/Login";
@@ -12,7 +12,7 @@ function App() {
 
   useEffect(() => {
     // auto-login
-    fetch("http://127.0.0.1:3000/api/me").then((r) => {
+    fetch("/api/me").then((r) => {
       if (r.ok) {
         r.json().then((user) => setUser(user));
       }

@@ -7,7 +7,7 @@ function NavBar({ setUser }) {
   const history = useHistory();
 
   function handleLogoutClick() {
-    fetch("http://127.0.0.1:3000/api/logout", { method: "DELETE" }).then((r) => {
+    fetch("/api/logout", { method: "DELETE" }).then((r) => {
       if (r.ok) {
         setUser(null);
       }

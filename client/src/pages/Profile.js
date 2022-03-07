@@ -10,7 +10,7 @@ function Profile({ user, setUser }) {
       profile_picture_url: result.info.secure_url,
       profile_picture_thumbnail_url: result.info.eager[0].secure_url
     }
-    fetch('http://127.0.0.1:3000/api/me', {
+    fetch('/api/me', {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json'
