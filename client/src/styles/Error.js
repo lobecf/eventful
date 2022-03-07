@@ -12,12 +12,13 @@ function Error({ children }) {
 const Wrapper = styled.div`
   color: red;
   background-color: mistyrose;
-  border-radius: 6px;
+  border-radius: 20px;
+  width: 300px;
   display: flex;
   padding: 8px;
   align-items: center;
   gap: 8px;
-  margin: 8px 0;
+  margin: auto;
 `;
 
 const Alert = styled.span`
@@ -31,6 +32,7 @@ const Alert = styled.span`
 `;
 
 const Message = styled.p`
+  font-family: 'Quicksand', sans-serif;
   margin: 0;
 `;
 

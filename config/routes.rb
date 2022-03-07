@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     post '/signup', to: 'users#create'
     delete '/logout', to: 'sessions#destroy'
 
+    get "/show_", to: "events#show_"
     get "/user_index_events", to: "users#user_index_events"
     get "/user_index_events_past", to: "users#user_index_events_past"
     get "/user_index_invitations", to: "users#user_index_invitations"

@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
 import styled from "styled-components";
-import { Button, Birthday, Halloween, Holiday, NewYears, Thanksgiving, P, ProfileTitle } from "../styles";
+import { ProfileTitle } from "../styles";
 
 function PastEventsList({ pastEvents, pastInvitations }) {
 
@@ -54,10 +54,6 @@ const Wrapper = styled.section`
 margin: 15px;
 `;
 
-const H1 = styled.h1`
-display:inline;
-`
-
 const H2 = styled.h2`
 font-family: 'Quicksand', sans-serif;
 display:inline;
@@ -100,9 +96,4 @@ margin: 0;
 const P2 = styled.p`
 margin-top: -7px;
 font-size: 22px;
-`
-
-const Button2 = styled.button`
-font-family: 'Quicksand', sans-serif;
-margin-right: 40px;
 `

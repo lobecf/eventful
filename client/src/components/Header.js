@@ -1,9 +1,7 @@
 import React from 'react';
 import styled from "styled-components";
-import { Link } from "react-router-dom";
-import { Button } from "../styles";
 
-function Header ( { onLogin} ) {
+function Header () {
 
     return (
     <Wrapper>
@@ -26,11 +24,4 @@ const Wrapper = styled.header`
   justify-content: center;
   align-items: center;
   padding: 8px;
-`;
-
-const Nav = styled.nav`
-  display: flex;
-  gap: 4px;
-  position: absolute;
-  right: 8px;
 `;

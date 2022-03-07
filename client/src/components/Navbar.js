@@ -1,10 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { Button } from "../styles";
 import { useHistory } from 'react-router-dom'
 
-function NavBar({ user, setUser }) {
+function NavBar({ setUser }) {
   const history = useHistory();
 
   function handleLogoutClick() {

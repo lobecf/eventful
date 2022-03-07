@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import styled from "styled-components";
-import { Button, Birthday, Halloween, Holiday, NewYears, Thanksgiving, H1, ProfileTitle } from "../styles";
+import { ProfileTitle } from "../styles";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Container } from "react-bootstrap";
 import { useHistory } from 'react-router-dom';
 import CloudinaryUpload from './CloudinaryUpload'
 
@@ -16,12 +15,12 @@ function UpdateEvent({eventId, updateEvent, sentInvitations, allUsers}) {
   const [endTime, setEndTime] = useState("")
   const [receivers, setReceivers] = useState([])
   const [eventImage, setEventImage] = useState('')
-  const [newReceivers, setNewReceivers] = useState([])
   const history = useHistory();
 
   useEffect(() => {
     getEvent();
   }, [])
+  
   function getEvent() {
     fetch(`/api/events/${eventId}`).then((result) => {
       result.json().then((event) => {
@@ -36,24 +35,6 @@ function UpdateEvent({eventId, updateEvent, sentInvitations, allUsers}) {
       })
     })
   }
-  //setReceivers(event.invitations.map(invitation => (invitation.receiver.name)))
-
-  // <p>Going:</p>
-  // {event.invitations.map(invitation => (
-  //   <p>{invitation.receiver.name}</p>
-  // ))}
-
-  console.log(allUsers)
-  console.log(sentInvitations)
-
-  // const newGuests = allUsers.filter(function(o) {
-  //   return receivers.some(function(o2) {
-  //     return o.id === o2.id;
-  //   })
-  // })
-
-  // console.log(newGuests)
-
 
   const handlePosterUpload = (result) => {
     setEventImage(result.info.secure_url)
@@ -72,7 +53,7 @@ function UpdateEvent({eventId, updateEvent, sentInvitations, allUsers}) {
     let event={title, description, location, start_time: startTime, end_time: endTime, receivers, event_picture_url: eventImage}
     console.warn("event", event)
     fetch(`/api/events/${eventId}`, {
-      method: 'PUT',
+      method: 'PATCH',
       headers: {
         'Accept':'application/json',
         'Content-Type':'application/json'

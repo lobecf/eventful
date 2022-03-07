@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
 import styled from "styled-components";
-import { Button, Birthday, Halloween, Holiday, NewYears, Thanksgiving, H1, ProfileTitle } from "../styles";
+import { ProfileTitle } from "../styles";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useHistory } from 'react-router-dom';
 import CloudinaryUpload from './CloudinaryUpload'

@@ -1,10 +1,10 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
-import { Button, Birthday, Halloween, Holiday, NewYears, Thanksgiving, P, ProfileTitle } from "../styles";
+import { ProfileTitle } from "../styles";
 import styled from "styled-components";
 
 function PendingInvitedEventsList({ user, events, invitations, handleAcceptInvitation, handleRejectInvitation }) {
-  
+
   return (
     <Wrapper>
       <Thumbnail src="https://cdn1.iconfinder.com/data/icons/wedding-day-6/32/Wedding_Invitation-512.png"/>
@@ -142,18 +142,6 @@ margin: 0;
 const P2 = styled.p`
 margin-top: -7px;
 font-size: 22px;
-`
-
-const P11 = styled.p`
-font-size: 14px;
-margin: 0;
-color: gray;
-`
-
-const P21 = styled.p`
-margin-top: -7px;
-font-size: 22px;
-color: gray;
 `
 
 const List = styled.h1`

@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { Button, Error, FormField, Label, ProfileTitle } from "../styles";
-import { Link } from "react-router-dom";
+import { Error } from "../styles";
 import { useHistory } from 'react-router-dom'
 
 function LoginForm({ onLogin }) {
@@ -13,6 +12,7 @@ function LoginForm({ onLogin }) {
 
   function handleSubmit(e) {
     e.preventDefault();
+    setErrors([]);
     setIsLoading(true);
     fetch("/api/login", {
       method: "POST",
@@ -91,9 +91,13 @@ const Button2 = styled.button`
     width: 300px;
     color: white;
     background: black;
+    outline: .5px solid lightgray;
+    outline-offset: -4px ;
     border-radius: 20px;
     &:hover {
       color: #99FFFF;
+      outline: .5px solid #99FFFF;
+      outline-offset: -4px ;
       transition: all 0.4s ease 0s;
     }
 `;
@@ -109,28 +113,6 @@ width: 300px;
 border-radius: 20px;
 padding-left: 5px;
 `;
-
-const H2 = styled.section`
-font-family: 'Quicksand', sans-serif;
-font-size: 15px;
-margin-left: 90px;
-background: white;
-`
-
-const Thumbnail = styled.img`
-  margin-right: 10px;
-  width: 50px;
-  height: auto;
-  border-radius: 50%;
-  display:inline;
-`;
-
-const List = styled.h1`
-font-family: 'Quicksand', sans-serif;
-font-size: 15px;
-display: inline;
-width: 90px;
-`
 
 const P = styled.p `
 display: flex;

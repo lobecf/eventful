@@ -1,7 +1,5 @@
 import React, {useState} from 'react'
 import styled from "styled-components";
-import { Button, Birthday, Halloween, Holiday, NewYears, Thanksgiving, P } from "../styles";
-import CloudinaryUpload from './CloudinaryUpload'
 
 
 function SearchUsers({ allUsers }) {
@@ -55,12 +53,6 @@ export default SearchUsers
 const Wrapper = styled.section`
 margin: 15px;
 `;
-
-const List = styled.h1`
-margin-left: 60px;
-font-family: 'Quicksand', sans-serif;
-font-size: 15px;
-`
 
 const Thumbnail = styled.img`
   margin-right: 10px;

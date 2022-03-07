@@ -1,7 +1,5 @@
 import React from 'react'
 import styled from "styled-components";
-import { Button, Birthday, Halloween, Holiday, NewYears, Thanksgiving, P } from "../styles";
-import CloudinaryUpload from './CloudinaryUpload'
 
 
 function UserDetails({ user, handleUpload }) {
@@ -35,7 +33,7 @@ const Thumbnail = styled.img`
   margin-right: 10px;
   width: 50px;
   height: auto;
-  border-radius: 50%;
+  border-radius: 30px 5px 5px 5px;
   display:inline;
 `;
 

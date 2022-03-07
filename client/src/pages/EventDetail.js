@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import styled from "styled-components";
 import { useHistory } from 'react-router-dom'
-import { Button, Birthday, Halloween, Holiday, NewYears, Thanksgiving, P, H1 } from "../styles";
+import { Holiday, P, H1 } from "../styles";
 
-function EventDetail({ invitations, eventId, handleAcceptInvitation, handleRejectInvitation, cancelEvent, updateEvent }) {
+function EventDetail({ user, eventId, handleAcceptInvitation, handleRejectInvitation, cancelEvent, updateEvent }) {
   const [event, setEvent] = useState(null)
   const history = useHistory();
 
@@ -18,11 +18,10 @@ function EventDetail({ invitations, eventId, handleAcceptInvitation, handleRejec
     [eventId],
   )
 
-  console.log(eventId)
-
   useEffect(() => {
     fetchEventCallback()
   }, [fetchEventCallback])
+
 
 
   const cancelEventButton = (event) => {
@@ -62,33 +61,7 @@ function EventDetail({ invitations, eventId, handleAcceptInvitation, handleRejec
     cancelEvent(event.id);
     history.push('/events')
   }
-
-  const rsvpButton = (event) => {
-    if (!event.user_can_modify) {
-      return (
-        <button
-          onClick={() => {
-            handleRejectInvitation(event.invitation.id).then(() => fetchEventCallback())
-          }
-        }>
-          Cancel RSVP
-        </button >
-      )
-    } else {
-      return (
-        <button
-          className="px-4 py-1 bg-green-500 text-white" 
-          onClick={() => {
-            handleAcceptInvitation(event.invitation.id).then(() => fetchEventCallback())
-          }
-        }>
-          RSVP for event
-        </button>
-      )
-    }
-  }
   
-
   if(!event) { return <div></div>}
   return (
     <Container>
@@ -99,13 +72,19 @@ function EventDetail({ invitations, eventId, handleAcceptInvitation, handleRejec
           <P2>Hosted by {event.user.name}</P2>
           <P2>{event.time}</P2>
           <P2>Location: {event.location}</P2>
-          <Map src="https://media.wired.com/photos/59269cd37034dc5f91bec0f1/191:100/w_1280,c_limit/GoogleMapTA.jpg"/>
-          {/* <p>{rsvpButton(event)}</p> */}
+          {/* <Map src="https://media.wired.com/photos/59269cd37034dc5f91bec0f1/191:100/w_1280,c_limit/GoogleMapTA.jpg"/> */}
         </Holiday>
       <Wrapper>
       {updateEventButton(event)}
       {cancelEventButton(event)}
-      {/* {rsvpButton(event)} */}
+      <div>
+      {event.invitations.filter(invitation => invitation.receiver.id === user.id).map((invitation => (
+        <form>
+        <Button2 onClick={() => handleAcceptInvitation(invitation.id)}>RSVP Yes</Button2>
+        <Button2 onClick={() => handleRejectInvitation(invitation.id)}>RSVP No</Button2>
+        </form>
+      )))}
+      </div> 
       </Wrapper>
       <Wrapper>
       <Wrapper3>
@@ -144,12 +123,6 @@ const Div = styled.div`
 
 const Img = styled.img`
     margin: auto;
-`;
-
-const Map = styled.img`
-  width: 350px;
-  margin: auto;
-  padding-bottom: 40px;
 `;
 
 const Button2 = styled.button`

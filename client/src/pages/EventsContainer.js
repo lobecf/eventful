@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Switch, Route, Link } from 'react-router-dom'
+import { Switch, Route } from 'react-router-dom'
 import CreatedEventsList from './CreatedEventsList'
 import CreateEvent from './CreateEvent'
 import Profile from './Profile'
@@ -8,7 +8,6 @@ import UserDetails from './UserDetails'
 import EventDetail from './EventDetail'
 import UpdateEvent from './UpdateEvent'
 import SearchUsers from './SearchUsers'
-import { useHistory } from 'react-router-dom'
 import styled from "styled-components";
 import PendingInvitedEventsList from './PendingInvitedEventsList'
 
@@ -19,7 +18,6 @@ function EventsContainer( {user, setUser} ) {
   const [invitations, setInvitations] = useState([])
   const [sentInvitations, setSentInvitations] = useState([])
   const [allUsers, setAllUsers] = useState([])
-  const history = useHistory();
   
   useEffect(() => {
     fetch("/api/users", {
@@ -252,11 +250,12 @@ const handleRejectInvitation = (invitationId) => {
           render={({ match }) => {
             return (
               <EventDetail
+              user={user}
               allUsers={allUsers}
+              invitationId={match.params.id}
               eventId={match.params.id}
               invitations={invitations}
               cancelEvent={cancelEvent}
-              allUsers={allUsers}
               handleAcceptInvitation={handleAcceptInvitation}
               handleRejectInvitation={handleRejectInvitation}
             />
@@ -274,7 +273,6 @@ const handleRejectInvitation = (invitationId) => {
               eventId={match.params.id}
               sentInvitations={sentInvitations}
               updateEvent={updateEvent}
-              allUsers={allUsers}
             />
             </Wrapper>
             )

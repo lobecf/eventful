@@ -39,12 +39,6 @@ const Wrapper = styled.section`
   padding-bottom: 40px;
 `;
 
-const Divider = styled.hr`
-  border: none;
-  border-bottom: 1px solid #ccc;
-  margin: 16px 0;
-`;
-
 const P = styled.p`
   font-family: 'Quicksand', sans-serif;
   text-align: center;
@@ -59,11 +53,13 @@ const Button = styled.button`
     width: 300px;
     color: white;
     background: black;
-    display: inline-block
-    position: relative;
+    outline: .5px solid lightgray;
+    outline-offset: -4px ;
     border-radius: 20px;
     &:hover {
       color: #99FFFF;
+      outline: .5px solid #99FFFF;
+      outline-offset: -4px ;
       transition: all 0.4s ease 0s;
     }
 `;

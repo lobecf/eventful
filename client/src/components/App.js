@@ -3,10 +3,7 @@ import { Switch, Route } from "react-router-dom";
 import styled from "styled-components";
 import NavBar from "./NavBar";
 import Header from "./Header";
-import InvitationDesigns from "./InvitationDesigns";
 import EventsContainer from "../pages/EventsContainer";
-import LoginForm from "./LoginForm";
-import SignUpForm from "./SignUpForm";
 import Login from "../pages/Login";
 
 

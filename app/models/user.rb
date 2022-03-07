@@ -5,6 +5,9 @@ class User < ApplicationRecord
     has_many :received_invitations, class_name: "Invitation", foreign_key: "receiver_id"
 
     has_many :notifications, as: :recipient
+
+    validates :username, uniqueness: true
+    
     has_secure_password
 
     def invitations

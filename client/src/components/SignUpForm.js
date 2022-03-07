@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { Button, Error, FormField, Label, Textarea, ProfileTitle } from "../styles";
+import { Error } from "../styles";
 import { useHistory } from 'react-router-dom'
 
 function SignUpForm({ onLogin }) {
@@ -9,7 +9,6 @@ function SignUpForm({ onLogin }) {
   const [password, setPassword] = useState("");
   const [passwordConfirmation, setPasswordConfirmation] = useState("");
   const [imageUrl, setImageUrl] = useState("");
-  const [address, setAddress] = useState("");
   const [errors, setErrors] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const history = useHistory();
@@ -29,7 +28,6 @@ function SignUpForm({ onLogin }) {
         password,
         password_confirmation: passwordConfirmation,
         image_url: imageUrl,
-        address,
       }),
     }).then((r) => {
       setIsLoading(false);
@@ -135,27 +133,6 @@ border-radius: 20px;
 padding-left: 5px;
 `;
 
-const H2 = styled.section`
-font-family: 'Quicksand', sans-serif;
-font-size: 15px;
-margin-left: 90px;
-background: white;
-`
-
-const Thumbnail = styled.img`
-  margin-right: 10px;
-  width: 50px;
-  height: auto;
-  border-radius: 50%;
-  display:inline;
-`;
-
-const List = styled.h1`
-font-family: 'Quicksand', sans-serif;
-font-size: 15px;
-display: inline;
-width: 90px;
-`
 
 const P = styled.p `
 display: flex;

@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
 import styled from "styled-components";
-import { Button, Birthday, Halloween, Holiday, NewYears, Thanksgiving, P, ProfileTitle } from "../styles";
+import { ProfileTitle } from "../styles";
 
 function CreatedEventsList({ events, cancelEvent, user }) {
 
@@ -43,10 +43,6 @@ export default CreatedEventsList
 const Wrapper = styled.section`
 margin: 15px;
 `;
-
-const H1 = styled.h1`
-display:inline;
-`
 
 const Thumbnail = styled.img`
   margin-right: 10px;
@@ -95,11 +91,4 @@ font-family: 'Quicksand', sans-serif;
 margin-right: 5px;
 color: black;
 font-size: 15px;
-`
-
-const Button3 = styled.button`
-font-family: 'Quicksand', sans-serif;
-margin-right: 5px;
-color: gray;
-font-size: 17px;
 `
