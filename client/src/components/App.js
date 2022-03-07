@@ -12,7 +12,7 @@ function App() {
 
   useEffect(() => {
     // auto-login
-    fetch("/api/me").then((r) => {
+    fetch("http://127.0.0.1:3000/api/me").then((r) => {
       if (r.ok) {
         r.json().then((user) => setUser(user));
       }

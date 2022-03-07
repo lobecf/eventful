@@ -9,7 +9,7 @@ function EventDetail({ user, eventId, handleAcceptInvitation, handleRejectInvita
 
   const fetchEventCallback = useCallback(
     () => {
-      fetch(`/api/events/${eventId}`, {
+      fetch(`http://127.0.0.1:3000/api/events/${eventId}`, {
         credentials: 'include'
       })
         .then(res => res.json())

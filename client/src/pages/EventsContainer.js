@@ -20,7 +20,7 @@ function EventsContainer( {user, setUser} ) {
   const [allUsers, setAllUsers] = useState([])
   
   useEffect(() => {
-    fetch("/api/users", {
+    fetch("http://127.0.0.1:3000/api/users", {
       credentials: 'include'
     })
       .then(res => res.json())
@@ -28,7 +28,7 @@ function EventsContainer( {user, setUser} ) {
   },[])
 
   useEffect(() => {
-    fetch("/api/user_index_invitations", {
+    fetch("http://127.0.0.1:3000/api/user_index_invitations", {
       credentials: 'include'
     })
       .then(res => res.json())
@@ -36,7 +36,7 @@ function EventsContainer( {user, setUser} ) {
   },[])
 
   useEffect(() => {
-    fetch("/api/user_index_invitations_past", {
+    fetch("http://127.0.0.1:3000/api/user_index_invitations_past", {
       credentials: 'include'
     })
       .then(res => res.json())
@@ -45,7 +45,7 @@ function EventsContainer( {user, setUser} ) {
 
 
   useEffect(() => {
-    fetch("/api/user_index_invitations_sent", {
+    fetch("http://127.0.0.1:3000/api/user_index_invitations_sent", {
       credentials: 'include'
     })
       .then(res => res.json())
@@ -53,7 +53,7 @@ function EventsContainer( {user, setUser} ) {
   },[])
 
   useEffect(() => {
-    fetch("/api/user_index_events", {
+    fetch("http://127.0.0.1:3000/api/user_index_events", {
       credentials: 'include'
     })
       .then(res => res.json())
@@ -61,7 +61,7 @@ function EventsContainer( {user, setUser} ) {
   },[])
 
   useEffect(() => {
-    fetch("/api/user_index_events_past", {
+    fetch("http://127.0.0.1:3000/api/user_index_events_past", {
       credentials: 'include'
     })
       .then(res => res.json())
@@ -69,7 +69,7 @@ function EventsContainer( {user, setUser} ) {
   },[])
 
   const handleAcceptInvitation = (invitationId) => {
-    fetch(`/api/invitations/${invitationId}`, {
+    fetch(`http://127.0.0.1:3000/api/invitations/${invitationId}`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
@@ -101,7 +101,7 @@ function EventsContainer( {user, setUser} ) {
 }
 
 const handleRejectInvitation = (invitationId) => {
-  fetch(`/api/invitations/${invitationId}`, {
+  fetch(`http://127.0.0.1:3000/api/invitations/${invitationId}`, {
     method: 'PATCH',
     headers: {
       'Content-Type': 'application/json',
@@ -126,7 +126,7 @@ const handleRejectInvitation = (invitationId) => {
 }
 
   const createEvent = (formData) => {
-    return fetch("/api/events", {
+    return fetch("http://127.0.0.1:3000/api/events", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -145,7 +145,7 @@ const handleRejectInvitation = (invitationId) => {
   }
 
   const updateEvent = (eventId, formData) => {
-    return fetch(`/api/events/${eventId}`, {
+    return fetch(`http://127.0.0.1:3000/api/events/${eventId}`, {
       method: "PUT",
       headers: {
         "Accept" : "application/json",
@@ -179,7 +179,7 @@ const handleRejectInvitation = (invitationId) => {
   }
 
   const cancelEvent = (eventId) => {
-    return fetch(`/api/events/${eventId}`, {
+    return fetch(`http://127.0.0.1:3000/api/events/${eventId}`, {
       method: "DELETE",
       credentials: 'include'
     })

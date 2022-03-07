@@ -26,7 +26,7 @@ function CloudinaryUpload({
         prepareUploadParams: (cb, params) => {
           params = [].concat(params);  //params can be a single object or an array of objects
           Promise.all(params.map((body) => {
-            return fetch("/api/uploads/prepare", {
+            return fetch("http://127.0.0.1:3000/api/uploads/prepare", {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json'
