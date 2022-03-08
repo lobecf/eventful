@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { ProfileTitle } from "../styles";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useHistory } from 'react-router-dom';
-import CloudinaryUpload from './CloudinaryUpload'
+// import CloudinaryUpload from './CloudinaryUpload'
 
 
 function CreateEvent({ allUsers, createEvent }) {
@@ -13,7 +13,7 @@ function CreateEvent({ allUsers, createEvent }) {
   const [startTime, setStartTime] = useState('')
   const [endTime, setEndTime] = useState('')
   const [eventType, setEventType] = useState('')
-  const [eventImage, setEventImage] = useState('')
+  // const [eventImage, setEventImage] = useState('')
   const [receivers, setReceivers] = useState([])
   const history = useHistory();
 
@@ -27,7 +27,7 @@ function CreateEvent({ allUsers, createEvent }) {
       end_time: endTime,
       event_type: eventType,
       receivers,
-      event_picture_url: eventImage
+      // event_picture_url: eventImage
     })
     setTitle('')
     setDescription('')
@@ -36,13 +36,13 @@ function CreateEvent({ allUsers, createEvent }) {
     setEndTime('')
     setEventType('')
     setReceivers([])
-    setEventImage('')
+    // setEventImage('')
     history.push("/events")
   }
 
-  const handlePosterUpload = (result) => {
-    setEventImage(result.info.secure_url)
-  }
+  // const handlePosterUpload = (result) => {
+  //   setEventImage(result.info.secure_url)
+  // }
 
   const handleChange2 = (user, checked) =>
   checked
@@ -102,14 +102,14 @@ function CreateEvent({ allUsers, createEvent }) {
             name="end_time"
           />
           </P>
-          <P>
+          {/* <P>
           <List htmlFor="title">Image: </List>
           <CloudinaryUpload
             preset="czv350o5"
             buttonText="Click to add"
             handleUpload={handlePosterUpload}
           />
-        </P>
+        </P> */}
       
         <Div >
           <List htmlFor="guests"> Guests: </List>
