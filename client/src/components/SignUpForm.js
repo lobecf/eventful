@@ -8,7 +8,6 @@ function SignUpForm({ onLogin }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirmation, setPasswordConfirmation] = useState("");
-  const [imageUrl, setImageUrl] = useState("");
   const [errors, setErrors] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const history = useHistory();
@@ -26,8 +25,7 @@ function SignUpForm({ onLogin }) {
         name,
         username,
         password,
-        password_confirmation: passwordConfirmation,
-        image_url: imageUrl,
+        password_confirmation: passwordConfirmation
       }),
     }).then((r) => {
       setIsLoading(false);

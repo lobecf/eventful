@@ -125,11 +125,6 @@ const Img = styled.img`
     margin: auto;
 `;
 
-const Map = styled.img`
-  width: 350px;
-  margin: auto;
-  padding-bottom: 40px;
-`;
 
 const Button2 = styled.button`
     float: left;

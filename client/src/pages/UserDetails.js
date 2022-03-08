@@ -2,7 +2,7 @@ import React from 'react'
 import styled from "styled-components";
 
 
-function UserDetails({ user, handleUpload }) {
+function UserDetails({ user }) {
 
 
   return (

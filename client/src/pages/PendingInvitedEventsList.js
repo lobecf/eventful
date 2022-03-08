@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { ProfileTitle } from "../styles";
 import styled from "styled-components";
 
-function PendingInvitedEventsList({ user, events, invitations, handleAcceptInvitation, handleRejectInvitation }) {
+function PendingInvitedEventsList({ invitations, handleAcceptInvitation, handleRejectInvitation }) {
 
   return (
     <Wrapper>
