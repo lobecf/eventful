@@ -21,7 +21,5 @@ Rails.application.routes.draw do
     patch "/me", to: "users#update"
   end
 
-  # get "/user_index_invited_events", to: "users#user_index_invited_events"
-  
   get "*path", to: "fallback#index", constraints: ->(req) { !req.xhr? && req.format.html? }
 end
