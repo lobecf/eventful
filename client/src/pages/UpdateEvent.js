@@ -18,22 +18,22 @@ function UpdateEvent({eventId, updateEvent, sentInvitations, allUsers}) {
   const history = useHistory();
 
   useEffect(() => {
+    function getEvent() {
+      fetch(`/api/events/${eventId}`).then((result) => {
+        result.json().then((event) => {
+          setEvent(event)
+          setTitle(event.title)
+          setDescription(event.description)
+          setLocation(event.location)
+          setStartTime(event.start_time)
+          setEndTime(event.end_time)
+          setEventImage(event.event_picture_url)
+          setReceivers([])
+        })
+      })
+    }
     getEvent();
   }, [])
-  function getEvent() {
-    fetch(`/api/events/${eventId}`).then((result) => {
-      result.json().then((event) => {
-        setEvent(event)
-        setTitle(event.title)
-        setDescription(event.description)
-        setLocation(event.location)
-        setStartTime(event.start_time)
-        setEndTime(event.end_time)
-        setEventImage(event.event_picture_url)
-        setReceivers([])
-      })
-    })
-  }
 
   const handlePosterUpload = (result) => {
     setEventImage(result.info.secure_url)
