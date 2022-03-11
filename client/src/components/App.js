@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Switch, Route } from "react-router-dom";
 import styled from "styled-components";
-import NavBar from "./NavBar";
+import NavBar from "../pages/NavBar";
 import Header from "./Header";
-import EventsContainer from "./EventsContainer";
-import Login from "./Login";
+import EventsContainer from "../pages/EventsContainer";
+import Login from "../pages/Login";
 
 
 function App() {
